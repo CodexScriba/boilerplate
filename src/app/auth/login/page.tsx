@@ -53,6 +53,14 @@ export default function LoginPage() {
               Sign up
             </button>
           </div>
+          <div className="text-sm text-center mt-4">
+            <a
+              href="/auth/forgot-password"
+              className="text-indigo-600 hover:text-indigo-500"
+            >
+              Forgot your password?
+            </a>
+          </div>
         </form>
       </div>
     </div>

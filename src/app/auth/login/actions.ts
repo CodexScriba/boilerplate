@@ -43,3 +43,24 @@ export async function signup(formData: FormData) {
 
   return redirect('/auth/login?message=Check email to continue sign in process')
 }
+
+export async function forgotPassword(formData: FormData) {
+  'use server'
+
+  const email = formData.get('email') as string
+  const supabase = await createClient()
+
+  if (!email) {
+    return redirect('/auth/forgot-password?error=Email is required')
+  }
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+  })
+
+  if (error) {
+    return redirect('/auth/forgot-password?error=' + error.message)
+  }
+
+  return redirect('/auth/forgot-password?message=Check your email for a password reset link')
+}
