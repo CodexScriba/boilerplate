@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function AuthErrorPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -6,12 +8,12 @@ export default function AuthErrorPage() {
         <p className="text-gray-600 mb-4">
           There was an error processing your authentication request.
         </p>
-        <a
+        <Link
           href="/auth/login"
           className="text-indigo-600 hover:text-indigo-500 font-medium"
         >
           Return to login
-        </a>
+        </Link>
       </div>
     </div>
   )

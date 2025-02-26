@@ -7,5 +7,13 @@ Next.js 15
 Supabase Auth
 Jest
 Next-intl
-
+Next-theme for dark mode 
 ###
+
+### Ui components
+- **Title.tsx**: A customizable title component with semantic heading levels and theme support.  
+  **Variants**: `h1` | `h2` | `h3` | `h4` | `h5` | `h6` | `p`  
+  **Colors**: `primary` | `secondary` | `accent` | `muted` | `destructive` | `foreground`  
+  **Weights**: `normal` | `medium` | `semibold` | `bold` | `extrabold`  
+  **Sizes**: `xs` | `sm` | `base` | `lg` | `xl` | `2xl` | `3xl` | `4xl` | `5xl` | `6xl`  
+  **Usage**: `<Title variant="h2" color="primary" weight="bold" size="xl">Title Text</Title>`
