@@ -1,0 +1,21 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "about": "About"
+  },
+  "Pages": {
+    "pricing": {
+      "title": "Pricing",
+      "description": "Our pricing plans"
+    },
+    "about": {
+      "title": "About",
+      "description": "Learn more about us"
+    },
+    "home": {
+      "title": "Welcome",
+      "description": "Welcome to our application"
+    }
+  }
+}

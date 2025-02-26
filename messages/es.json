@@ -1,0 +1,21 @@
+{
+  "Navigation": {
+    "home": "Inicio",
+    "pricing": "Precios",
+    "about": "Acerca de"
+  },
+  "Pages": {
+    "pricing": {
+      "title": "Precios",
+      "description": "Nuestros planes de precios"
+    },
+    "about": {
+      "title": "Acerca de",
+      "description": "Aprende más sobre nosotros"
+    },
+    "home": {
+      "title": "Bienvenido",
+      "description": "Bienvenido a nuestra aplicación"
+    }
+  }
+}
