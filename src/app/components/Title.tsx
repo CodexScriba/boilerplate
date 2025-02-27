@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 type TitleVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
-type TitleColor = 'primary' | 'secondary' | 'accent' | 'muted' | 'destructive' | 'foreground';
+type TitleColor = 'primary' | 'secondary' | 'accent' | 'muted' | 'muted-foreground' | 'destructive' | 'foreground';
 type TitleWeight = 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
 type TitleSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
@@ -53,6 +53,7 @@ export function Title({
     secondary: 'text-secondary',
     accent: 'text-accent',
     muted: 'text-muted',
+    'muted-foreground': 'text-muted-foreground',
     destructive: 'text-destructive',
     foreground: 'text-foreground',
   };
