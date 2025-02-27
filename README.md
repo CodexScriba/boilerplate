@@ -7,6 +7,7 @@ Next.js 15
 Supabase Auth
 Next-intl
 Next-theme for dark mode 
+Playwright for testing, vercel suggest  E2E test
 ###
 
 ### Ui components
