@@ -25,9 +25,13 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
+  /* 
+  // Comment out the webServer section to avoid starting the Next.js server
+  // We'll use a different approach for testing
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },
+  */
 });
