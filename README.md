@@ -8,6 +8,8 @@ Supabase Auth
 Next-intl
 Next-theme for dark mode 
 Playwright for testing, vercel suggest  E2E test
+Posthog-js installation 
+npx shadcn@latest add --all
 ###
 
 ### Ui components
