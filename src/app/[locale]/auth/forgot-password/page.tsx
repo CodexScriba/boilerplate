@@ -1,41 +1,94 @@
-import { forgotPassword } from '../login/actions'
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { forgotPassword } from '../login/actions';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Title } from '@/app/components/Title';
 
 export default function ForgotPasswordPage() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <div className="w-full max-w-md space-y-8">
-        <div>
-          <h1 className="text-2xl font-bold">Reset Password</h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Enter your email address and we will send you a link to reset your password.
-          </p>
-        </div>
-        
-        <form className="mt-8 space-y-6">
-          <div>
-            <label htmlFor="email" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="relative block w-full rounded-md border-0 p-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
-              placeholder="Email address"
-            />
-          </div>
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  
+  const form = useForm({
+    defaultValues: {
+      email: '',
+    },
+  });
+  
+  const onSubmit = async (data) => {
+    try {
+      setIsSubmitting(true);
+      setSubmitError('');
+      
+      // You could either use the action directly or handle it with fetch
+      await forgotPassword(data);
+      
+      // Handle success - you might want to show a success message
+      form.reset();
+    } catch (error) {
+      setSubmitError('Failed to send reset link. Please try again.');
+      console.error('Password reset error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-          <div>
-            <button
-              formAction={forgotPassword}
-              className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Reset Password
-            </button>
-          </div>
-        </form>
-      </div>
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-background">
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader className="space-y-1">
+          <Title variant="h2" weight="bold" size="2xl">Reset Password</Title>
+          <CardDescription className="text-muted-foreground">
+            Enter your email address and we will send you a link to reset your password.
+          </CardDescription>
+        </CardHeader>
+        
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                rules={{
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid email address',
+                  },
+                }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email address</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="name@example.com" 
+                        type="email"
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {submitError && (
+                <div className="text-sm text-destructive">{submitError}</div>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Reset Password'}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </div>
-  )
+  );
 }
