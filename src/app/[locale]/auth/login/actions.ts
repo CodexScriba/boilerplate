@@ -1,66 +1,50 @@
-import { createClient } from '@/utils/supabase/server'
-import { redirect } from 'next/navigation'
+'use server';
 
-export async function login(formData: FormData) {
-  'use server'
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import { LoginFormValues } from "./types";
 
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
-
-  const supabase = await createClient()
-
+export async function login(data: LoginFormValues) {
+  const supabase = await createClient();
+  
   const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  })
+    email: data.email,
+    password: data.password,
+  });
 
   if (error) {
-    return redirect('/auth/login?error=Invalid credentials')
+    return { error: error.message };
   }
 
-  return redirect('/')
+  revalidatePath('/', 'layout');
+  redirect('/');
 }
 
-export async function signup(formData: FormData) {
-  'use server'
-
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
-
-  const supabase = await createClient()
-
-  const { error } = await supabase.auth.signUp({
-    email,
-    password,
+export async function signInWithOAuth(provider: string) {
+  const supabase = await createClient();
+  
+  const { data } = await supabase.auth.signInWithOAuth({
+    provider: provider as any,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
     },
-  })
+  });
 
-  if (error) {
-    return redirect('/auth/login?error=Could not authenticate user')
+  if (data.url) {
+    redirect(data.url);
   }
-
-  return redirect('/auth/login?message=Check email to continue sign in process')
 }
 
-export async function forgotPassword(formData: FormData) {
-  'use server'
-
-  const email = formData.get('email') as string
-  const supabase = await createClient()
-
-  if (!email) {
-    return redirect('/auth/forgot-password?error=Email is required')
+export async function loginAsGuest() {
+  const supabase = await createClient();
+  
+  const { error: signInError } = await supabase.auth.signInAnonymously();
+  
+  if (signInError) {
+    return { error: signInError.message };
   }
 
-  const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
-  })
-
-  if (error) {
-    return redirect('/auth/forgot-password?error=' + error.message)
-  }
-
-  return redirect('/auth/forgot-password?message=Check your email for a password reset link')
+  revalidatePath('/', 'layout');
+  redirect('/');
 }
