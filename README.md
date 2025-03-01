@@ -29,3 +29,13 @@ npx shadcn@latest add --all
   ---LoginForm.tsx-> login form component
   ---RegistrationForm.tsx -> registration form component
   ---SocialButtons.Tsx -> social login buttons
+
+Files that handle auth: 
+src/utils/supabase/server.ts: Handles server-side Supabase client creation and authentication state management.
+src/utils/supabase/server-internal.ts: Internal server client for Supabase, used in various utility functions.
+src/utils/supabase/middleware.ts: Middleware for Supabase authentication, including session management.
+src/utils/supabase/client.ts: Browser client for Supabase.
+src/middleware.ts: Main middleware file that integrates Supabase authentication with Next.js middleware.
+src/utils/paddle/process-webhook.ts: Processes webhooks and interacts with Supabase for authentication.
+src/utils/paddle/get-customer-id.ts: Retrieves customer ID using Supabase authentication.
+src/app/[locale]/(protected)/dashboard/page.tsx: Protected dashboard page that uses Supabase for authentication.
