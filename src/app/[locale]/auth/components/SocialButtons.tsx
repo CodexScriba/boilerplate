@@ -46,17 +46,17 @@ const PROVIDER_CONFIG = {
   facebook: {
     icon: <Facebook size={20} aria-hidden="true" />,
     className: "bg-[#1877F2] text-white hover:bg-[#1877F2]/90",
-    label: "Continue with Facebook",
+    label: "Facebook",
   },
   google: {
     icon: <GoogleIcon />,
     className: "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50",
-    label: "Continue with Google",
+    label: "Google",
   },
   apple: {
     icon: <Apple size={20} aria-hidden="true" />,
     className: "bg-black text-white hover:bg-black/90",
-    label: "Continue with Apple",
+    label: "Apple",
   },
 } as const;
 
@@ -105,7 +105,7 @@ export function SocialButtons({
           {error}
         </div>
       )}
-      <div className={cn("flex flex-col sm:flex-row gap-3", className)} role="group" aria-label="Social login options">
+      <div className={cn("grid grid-cols-1 sm:grid-cols-3 gap-3", className)} role="group" aria-label="Social login options">
         {showProviders.map((provider) => {
           const config = PROVIDER_CONFIG[provider];
           const isCurrentlyLoading = isLoading && activeProvider === provider;
@@ -114,7 +114,8 @@ export function SocialButtons({
             <Button
               key={provider}
               className={cn(
-                "flex-1 flex items-center justify-center gap-2 rounded-full",
+                "flex items-center justify-center gap-1 rounded-full text-xs h-10",
+                "w-full truncate",
                 config.className
               )}
               onClick={() => handleSocialLogin(provider)}
@@ -122,8 +123,8 @@ export function SocialButtons({
               aria-disabled={isLoading}
               type="button"
             >
-              {config.icon}
-              <span>{isCurrentlyLoading ? `Connecting to ${provider}...` : config.label}</span>
+              <span className="flex-shrink-0">{config.icon}</span>
+              <span className="truncate max-w-[100px]">{isCurrentlyLoading ? `Connecting...` : provider === "apple" ? "Apple" : config.label}</span>
             </Button>
           );
         })}

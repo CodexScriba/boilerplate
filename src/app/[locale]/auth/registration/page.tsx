@@ -3,13 +3,13 @@ import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { RegisterForm } from "../components/RegistrationForm";
 import { SocialButtons } from "../components/SocialButtons";
-
+// Make sure you've updated the SocialButtons component with the fixed versio
 
 export default function RegisterPage() {
   return (
-    <div className="flex-1 bg-gradient-to-br from-[hsl(var(--background))] to-[hsl(var(--muted))]">
-      <div className="container max-w-5xl mx-auto py-8">
-        <Card className="w-full flex flex-col md:flex-row rounded-3xl">
+    <div className="flex min-h-screen bg-gradient-to-br from-[hsl(var(--background))] to-[hsl(var(--muted))]">
+      <div className="container max-w-5xl mx-auto py-8 flex items-center">
+        <Card className="w-full flex flex-col md:flex-row rounded-3xl overflow-hidden">
           {/* Left side - Form */}
           <div className="md:w-7/12 p-6 md:p-8">
             <CardHeader className="space-y-4 p-0 mb-8">
@@ -51,9 +51,9 @@ export default function RegisterPage() {
           </div>
 
           {/* Right side - Image/Content */}
-          <div className="md:w-5/12 relative hidden md:flex bg-muted rounded-r-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
-            <div className="flex items-center justify-center h-full p-6 relative z-10">
+          <div className="md:w-5/12 relative hidden md:block bg-muted rounded-r-3xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 z-10" />
+            <div className="flex items-center justify-center h-full p-6 relative z-20">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-primary">Join Our Community</h2>
                 <p className="text-muted-foreground">
