@@ -25,3 +25,7 @@ npx shadcn@latest add --all
   --callback-route.ts-> handles OAuth callbacks by exchanging a temporary code for a session.
   --confirm-route.ts-> verifies email OTP tokens for sign-up or password reset, while the
   --forgot-password.ts-> handles password reset by sending a reset link to the user's email.
+  --components->
+  ---LoginForm.tsx-> login form component
+  ---RegistrationForm.tsx -> registration form component
+  ---SocialButtons.Tsx -> social login buttons
