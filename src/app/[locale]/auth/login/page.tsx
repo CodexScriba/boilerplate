@@ -2,7 +2,7 @@
 import { LoginForm } from "../components/LoginForm";
 import { SocialButtons } from "../components/SocialButtons";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardDescription, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { BookOpen, Stars, Rocket, Users } from "lucide-react";
@@ -34,7 +34,7 @@ export default function LoginPage() {
                 </div>
                 <CardDescription className="text-base flex items-center gap-2 mt-4">
                   <Users className="w-5 h-5 text-[hsl(var(--muted-foreground))]" />
-                  Don't have an account?{" "}
+                  Do not have an account?{" "}
                   <Link
                     href="/auth/register"
                     className="text-[hsl(var(--accent2))] hover:underline font-bold inline-flex items-center gap-1"
@@ -63,16 +63,16 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Right side - Test Image */}
-            <div className="md:w-5/12 p-4 hidden md:flex items-center justify-center bg-muted">
-              <div className="relative w-full h-full rounded-xl overflow-hidden p-4">
-                {/* TODO: Replace with actual image for production */}
-                <div className="bg-[#4F46E5] w-full h-full rounded-lg flex items-center justify-center text-white font-medium text-center p-4">
-                  <div className="space-y-4">
-                    <div className="text-2xl font-bold">Test Image</div>
-                    <div>This is a placeholder for the login background image</div>
-                  </div>
-                </div>
+            {/* Right side - Image */}
+            <div className="md:w-5/12 p-4 hidden md:flex items-center justify-center">
+              <div className="relative w-full h-full rounded-xl overflow-hidden p-1">
+                <Image
+                  src="/images/login_image.png"
+                  alt="Login illustration"
+                  fill
+                  className="object-cover rounded-lg"
+                  priority
+                />
               </div>
             </div>
           </div>
