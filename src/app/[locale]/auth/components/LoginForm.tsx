@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -20,7 +19,6 @@ import { login } from "../login/actions";
 import { loginSchema, LoginFormValues } from "../login/types";
 
 export function LoginForm() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,7 +43,8 @@ export function LoginForm() {
       }
 
       // Successful login will redirect via the server action
-    } catch (error) {
+    } catch (err) {
+      console.error("Login error:", err);
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);

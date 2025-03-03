@@ -29,6 +29,13 @@ npx shadcn@latest add --all
   ---LoginForm.tsx-> login form component
   ---RegistrationForm.tsx -> registration form component
   ---SocialButtons.Tsx -> social login buttons
+  --error-> page.tsx displays an error message when authentication fails.
+  --login-> page.tsx displays the login form.
+  --- actions.ts-> handles login actions. 
+  --- types.ts-> defines login form values and validation schema.
+  --registration-> page.tsx displays the registration form.
+  --- actions.ts-> handles registration actions. 
+  --- types.ts-> defines registration form values and validation schema.
 
 Files that handle auth: 
 src/utils/supabase/server.ts: Handles server-side Supabase client creation and authentication state management.
