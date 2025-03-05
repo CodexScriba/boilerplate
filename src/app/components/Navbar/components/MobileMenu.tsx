@@ -1,28 +1,54 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { MenuIcon, XIcon } from "lucide-react";
-import { navLinks } from "../config/navLinks";
 import { LangSwitcher } from "./LangSwitcher";
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    // Prevent scrolling when menu is open
-    if (!isOpen) {
+  const toggleMenu = useCallback(() => {
+    setIsOpen(prev => !prev);
+  }, []);
+
+  // Handle body scroll blocking when menu is open
+  useEffect(() => {
+    if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  };
+    
+    // Cleanup effect on unmount
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  // Close menu on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen]);
 
   return (
     <>
-      <Button variant="ghost" onClick={toggleMenu} className="p-2">
+      <Button 
+        variant="ghost" 
+        onClick={toggleMenu} 
+        className="p-2"
+        aria-expanded={isOpen}
+        aria-label="Toggle menu"
+      >
         {isOpen ? (
           <XIcon className="h-6 w-6" />
         ) : (
@@ -32,10 +58,18 @@ export function MobileMenu() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm">
+        <div 
+          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm"
+          aria-modal="true"
+          role="dialog"
+        >
           <div className="container mx-auto px-4 py-8">
             <div className="flex justify-end mb-6">
-              <Button variant="ghost" onClick={toggleMenu}>
+              <Button 
+                variant="ghost" 
+                onClick={toggleMenu} 
+                aria-label="Close menu"
+              >
                 <XIcon className="h-6 w-6" />
               </Button>
             </div>
@@ -43,16 +77,14 @@ export function MobileMenu() {
             <div className="flex flex-col space-y-6">
               {/* Navigation Links */}
               <div className="flex flex-col space-y-4">
-                {navLinks.map(({ href, icon: Icon }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="flex items-center space-x-3 py-2 text-lg font-medium hover:text-primary"
+                {navLinks.map((item) => (
+                  <NavLink
+                    key={item.href}
+                    item={item}
+                    className="py-2 text-lg font-medium"
+                    iconClassName="h-5 w-5 text-secondary"
                     onClick={toggleMenu}
-                  >
-                    {Icon && <Icon className="h-5 w-5 text-secondary" />}
-                    <span>{href.substring(1) || "Home"}</span>
-                  </Link>
+                  />
                 ))}
               </div>
 
@@ -90,3 +122,8 @@ export function MobileMenu() {
     </>
   );
 }
+
+// Import Link at the top
+import Link from "next/link";
+import { navLinks } from "../config/navLinks";
+import { NavLink } from "./NavLink";

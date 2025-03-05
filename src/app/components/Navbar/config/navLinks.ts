@@ -1,37 +1,30 @@
-// Navigation links configuration
-import { BookOpen, Newspaper, Info, GraduationCap, Users } from "lucide-react";
+import { NavLinkItem } from '../types';
+import { Home, Info, Headphones, BookOpen, Mail } from 'lucide-react';
 
-export type NavLink = {
-  label: string;
-  labelMessage: () => string; // This will be replaced with actual translations later
-  href: string;
-  icon?: React.ComponentType<{ className?: string }>;
-};
-
-export const navLinks: NavLink[] = [
+export const navLinks: NavLinkItem[] = [
   {
-    label: "Schools",
-    labelMessage: () => "Schools",
-    href: "/schools",
-    icon: GraduationCap,
+    href: '/',
+    icon: Home,
+    label: 'Home'
   },
   {
-    label: "News",
-    labelMessage: () => "News",
-    href: "/news",
-    icon: Newspaper,
-  },
-  {
-    label: "About Us",
-    labelMessage: () => "About Us",
-    href: "/about",
+    href: '/about',
     icon: Info,
+    label: 'About'
   },
-];
-
-// Language options available in the app
-export const languages = [
-  { value: "en", label: "English" },
-  { value: "es", label: "Español" },
-  { value: "pt", label: "Português" },
+  {
+    href: '/services',
+    icon: Headphones,
+    label: 'Services'
+  },
+  {
+    href: '/blog',
+    icon: BookOpen,
+    label: 'Blog'
+  },
+  {
+    href: '/contact',
+    icon: Mail,
+    label: 'Contact'
+  }
 ];

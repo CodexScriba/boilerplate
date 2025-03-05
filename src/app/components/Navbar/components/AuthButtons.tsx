@@ -2,10 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-interface AuthButtonsProps {
-  compact?: boolean;
-}
+import { AuthButtonsProps } from "../types";
 
 export function AuthButtons({ compact = false }: AuthButtonsProps) {
   if (compact) {
