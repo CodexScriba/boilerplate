@@ -17,6 +17,15 @@ export function AuthButtons({ compact = false }: AuthButtonsProps) {
             Login
           </Link>
         </Button>
+        <Button
+          variant="secondary"
+          className="rounded-full px-3 py-2 h-9 bg-accent text-accent-foreground hover:bg-primary/90"
+          asChild
+        >
+          <Link href="/auth/register">
+            Sign Up
+          </Link>
+        </Button>
       </div>
     );
   }

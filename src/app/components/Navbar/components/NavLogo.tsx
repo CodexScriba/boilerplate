@@ -6,7 +6,7 @@ export function NavLogo({ size = 95, priority = true }: NavLogoProps) {
   return (
     <Link className="font-semibold" href="/" aria-label="Home">
       <Image
-        src="/Logo.svg"
+        src="/images/Logo.svg"
         alt="Logo"
         width={size}
         height={size}

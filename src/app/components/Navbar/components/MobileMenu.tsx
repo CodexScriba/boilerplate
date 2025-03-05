@@ -1,129 +1,86 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { MenuIcon, XIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { LangSwitcher } from "./LangSwitcher";
-
-export function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = useCallback(() => {
-    setIsOpen(prev => !prev);
-  }, []);
-
-  // Handle body scroll blocking when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    
-    // Cleanup effect on unmount
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
-
-  // Close menu on escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen]);
-
-  return (
-    <>
-      <Button 
-        variant="ghost" 
-        onClick={toggleMenu} 
-        className="p-2"
-        aria-expanded={isOpen}
-        aria-label="Toggle menu"
-      >
-        {isOpen ? (
-          <XIcon className="h-6 w-6" />
-        ) : (
-          <MenuIcon className="h-6 w-6" />
-        )}
-      </Button>
-
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm"
-          aria-modal="true"
-          role="dialog"
-        >
-          <div className="container mx-auto px-4 py-8">
-            <div className="flex justify-end mb-6">
-              <Button 
-                variant="ghost" 
-                onClick={toggleMenu} 
-                aria-label="Close menu"
-              >
-                <XIcon className="h-6 w-6" />
-              </Button>
-            </div>
-
-            <div className="flex flex-col space-y-6">
-              {/* Navigation Links */}
-              <div className="flex flex-col space-y-4">
-                {navLinks.map((item) => (
-                  <NavLink
-                    key={item.href}
-                    item={item}
-                    className="py-2 text-lg font-medium"
-                    iconClassName="h-5 w-5 text-secondary"
-                    onClick={toggleMenu}
-                  />
-                ))}
-              </div>
-
-              {/* Language Switcher */}
-              <div className="py-4 border-t border-b">
-                <LangSwitcher />
-              </div>
-
-              {/* Auth Buttons */}
-              <div className="flex flex-col space-y-3 pt-4">
-                <Button
-                  variant="default"
-                  className="rounded-full py-6 w-full bg-secondary text-accent-foreground hover:bg-primary/90"
-                  asChild
-                >
-                  <Link href="/auth/login" onClick={toggleMenu}>
-                    Login
-                  </Link>
-                </Button>
-
-                <Button
-                  variant="secondary"
-                  className="rounded-full py-6 w-full bg-accent text-accent-foreground hover:bg-primary/90"
-                  asChild
-                >
-                  <Link href="/auth/register" onClick={toggleMenu}>
-                    Sign Up
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-// Import Link at the top
 import Link from "next/link";
 import { navLinks } from "../config/navLinks";
 import { NavLink } from "./NavLink";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose
+} from "@/components/ui/sheet";
+
+export function MobileMenu() {
+  const [open, setOpen] = useState(false);
+  
+  const handleLinkClick = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button 
+          variant="ghost" 
+          className="p-2 rounded-full"
+          aria-label="Toggle menu"
+        >
+          <MenuIcon className="h-6 w-6" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-[85%] sm:max-w-md pt-12">
+        <div className="flex flex-col space-y-6 mt-4">
+          {/* Navigation Links */}
+          <div className="flex flex-col space-y-4">
+            {navLinks.map((item) => (
+              <SheetClose asChild key={item.href}>
+                <NavLink
+                  item={item}
+                  className="py-2 text-lg font-medium"
+                  iconClassName="h-5 w-5 mr-3 text-[var(--accent)]"
+                  onClick={handleLinkClick}
+                />
+              </SheetClose>
+            ))}
+          </div>
+
+          {/* Language Switcher */}
+          <div className="py-4 border-t border-b">
+            <LangSwitcher />
+          </div>
+
+          {/* Auth Buttons */}
+          <div className="flex flex-col space-y-3 pt-4">
+            <SheetClose asChild>
+              <Button
+                variant="default"
+                className="rounded-full py-6 w-full bg-secondary text-accent-foreground hover:bg-primary/90"
+                asChild
+              >
+                <Link href="/auth/login" onClick={handleLinkClick}>
+                  Login
+                </Link>
+              </Button>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Button
+                variant="secondary"
+                className="rounded-full py-6 w-full bg-accent text-accent-foreground hover:bg-primary/90"
+                asChild
+              >
+                <Link href="/auth/register" onClick={handleLinkClick}>
+                  Sign Up
+                </Link>
+              </Button>
+            </SheetClose>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
