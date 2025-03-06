@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -67,7 +68,7 @@ export function RegisterForm({
       onSuccess?.();
       router.push(redirectTo);
       router.refresh();
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
@@ -263,13 +264,13 @@ export function RegisterForm({
               <div className="space-y-1 leading-none">
                 <FormLabel htmlFor="terms" className="text-sm font-normal">
                   I agree to the{" "}
-                  <a href="/terms" className="text-accent hover:underline">
+                  <Link href="/terms" className="text-accent hover:underline">
                     Terms of Service
-                  </a>{" "}
+                  </Link>{" "}
                   and{" "}
-                  <a href="/privacy" className="text-accent hover:underline">
+                  <Link href="/privacy" className="text-accent hover:underline">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </FormLabel>
                 <FormMessage aria-live="polite" />
               </div>

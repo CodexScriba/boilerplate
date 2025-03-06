@@ -1,7 +1,6 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import { RegisterFormValues, registerSchema } from './types';
 import { z } from 'zod';
@@ -60,7 +59,7 @@ export async function socialLogin(provider: string): Promise<SocialLoginResult> 
     const supabase = await createClient();
     
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: provider as any, // Type assertion needed for the provider string
+      provider: provider as unknown as Parameters<typeof supabase.auth.signInWithOAuth>[0]['provider'],
       options: {
         redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
       },

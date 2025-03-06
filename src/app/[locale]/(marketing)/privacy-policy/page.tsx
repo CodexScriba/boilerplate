@@ -18,8 +18,8 @@ export default function PrivacyPolicyPage() {
         <section id="introduction" className="space-y-3">
           <h2 className="text-2xl font-semibold tracking-tight">1. Introduction</h2>
           <p>
-            This Privacy Policy ("Policy") explains how Imagibook.ai ("Imagibook," "we," "us," or "our") collects, 
-            uses, discloses, and safeguards personal information when you ("User" or "you") access or use our Services. 
+            This Privacy Policy (&quot;Policy&quot;) explains how Imagibook.ai (&quot;Imagibook,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, 
+            uses, discloses, and safeguards personal information when you (&quot;User&quot; or &quot;you&quot;) access or use our Services. 
             By using the Services, you agree to the collection and use of your information in accordance with this Policy.
           </p>
         </section>
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section id="data-retention-and-childrens-privacy" className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight">4. Data Retention and Children's Privacy</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">4. Data Retention and Children&apos;s Privacy</h2>
           
           <div className="space-y-2">
             <h3 className="text-xl font-medium">Data Retention:</h3>
@@ -93,23 +93,23 @@ export default function PrivacyPolicyPage() {
                 We retain account-related information as long as necessary to fulfill the purposes outlined in this Policy or as required by law.
               </li>
               <li>
-                Children's personal data (e.g., name, age, photos) will be stored for no more than thirty (30) days, 
+                Children&apos;s personal data (e.g., name, age, photos) will be stored for no more than thirty (30) days, 
                 after which it is permanently deleted from active databases.
               </li>
             </ul>
           </div>
           
           <div className="space-y-2">
-            <h3 className="text-xl font-medium">Children's Data Practices:</h3>
+            <h3 className="text-xl font-medium">Children&apos;s Data Practices:</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>
-                We comply with the Children's Online Privacy Protection Act ("COPPA") and other relevant laws.
+                We comply with the Children&apos;s Online Privacy Protection Act (&quot;COPPA&quot;) and other relevant laws.
               </li>
               <li>
                 We only collect child information from parents or legal guardians with their consent.
               </li>
               <li>
-                We do not use children's personal information for marketing or advertising purposes.
+                We do not use children&apos;s personal information for marketing or advertising purposes.
               </li>
             </ul>
           </div>

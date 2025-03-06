@@ -25,7 +25,7 @@ export async function signInWithOAuth(provider: string) {
   const supabase = await createClient();
   
   const { data } = await supabase.auth.signInWithOAuth({
-    provider: provider as any,
+    provider: provider as unknown as Parameters<typeof supabase.auth.signInWithOAuth>[0]['provider'],
     options: {
       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
     },

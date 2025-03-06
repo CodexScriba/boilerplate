@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Facebook, Apple } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { socialLogin } from "../registration/actions"; // Import the server action
-import { SocialLoginResult } from "../registration/types";
+// Removed unused SocialLoginResult import
 
 export type SocialProvider = "google" | "facebook" | "apple";
 
@@ -86,7 +86,7 @@ export function SocialButtons({
 
       // If we get here, TypeScript knows 'url' exists on the result
       window.location.href = result.url;
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);

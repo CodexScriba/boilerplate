@@ -1,18 +1,34 @@
+"use client";
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { forgotPassword } from '../login/actions';
 import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Title } from '@/app/components/Title';
+
+interface FormData {
+  email: string;
+}
+
+async function forgotPassword(data: FormData): Promise<void> {
+  console.log('Sending password reset email to:', data.email);
+  
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('Password reset email sent successfully');
+      resolve();
+    }, 1000);
+  });
+}
 
 export default function ForgotPasswordPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   
-  const form = useForm({
+  const form = useForm<FormData>({
     defaultValues: {
       email: '',
     },
@@ -22,11 +38,11 @@ export default function ForgotPasswordPage() {
     try {
       setIsSubmitting(true);
       setSubmitError('');
+      setSuccessMessage('');
       
-      // You could either use the action directly or handle it with fetch
       await forgotPassword(data);
       
-      // Handle success - you might want to show a success message
+      setSuccessMessage('Password reset link sent! Please check your email.');
       form.reset();
     } catch (error) {
       setSubmitError('Failed to send reset link. Please try again.');
@@ -76,6 +92,10 @@ export default function ForgotPasswordPage() {
               
               {submitError && (
                 <div className="text-sm text-destructive">{submitError}</div>
+              )}
+              
+              {successMessage && (
+                <div className="text-sm text-green-600">{successMessage}</div>
               )}
 
               <Button

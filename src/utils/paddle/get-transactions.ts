@@ -1,7 +1,7 @@
 'use server'
 
 import { getCustomerId } from '@/utils/paddle/get-customer-id'
-import { getErrorMessage, parseSDKResponse } from '@/utils/paddle/data-helpers'
+import { getErrorMessage } from '@/utils/paddle/data-helpers'
 import { getPaddleInstance } from '@/utils/paddle/get-paddle-instance'
 import { TransactionResponse } from '@/lib/api.types'
 
