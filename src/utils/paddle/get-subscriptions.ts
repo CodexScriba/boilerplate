@@ -3,7 +3,6 @@
 import { getCustomerId } from '@/utils/paddle/get-customer-id'
 import { getPaddleInstance } from '@/utils/paddle/get-paddle-instance'
 import { SubscriptionResponse } from '@/lib/api.types'
-import { getErrorMessage } from '@/utils/paddle/data-helpers'
 
 export async function getSubscriptions(): Promise<SubscriptionResponse> {
   try {
@@ -17,9 +16,18 @@ export async function getSubscriptions(): Promise<SubscriptionResponse> {
         totalRecords: subscriptionCollection.estimatedTotal,
       }
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (e) {
-    return getErrorMessage()
+  } catch {
+    return {
+      data: [],
+      hasMore: false,
+      totalRecords: 0,
+      error: 'Something went wrong'
+    }
   }
-  return getErrorMessage()
+  return {
+    data: [],
+    hasMore: false,
+    totalRecords: 0,
+    error: 'Customer ID not found'
+  }
 }

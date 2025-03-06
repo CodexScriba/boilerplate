@@ -1,8 +1,8 @@
 'use server'
 
 import { getCustomerId } from '@/utils/paddle/get-customer-id'
-import { getErrorMessage } from '@/utils/paddle/data-helpers'
 import { getPaddleInstance } from '@/utils/paddle/get-paddle-instance'
+import { Transaction } from '@paddle/paddle-node-sdk'
 import { TransactionResponse } from '@/lib/api.types'
 
 export async function getTransactions(): Promise<TransactionResponse> {
@@ -14,15 +14,26 @@ export async function getTransactions(): Promise<TransactionResponse> {
         perPage: 20,
       })
       const transactions = await transactionCollection.next()
+      
+      // Ensure we're returning the correct type
       return {
-        data: transactions,
+        data: transactions as Transaction[],
         hasMore: transactionCollection.hasMore,
         totalRecords: transactionCollection.estimatedTotal,
       }
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (e) {
-    return getErrorMessage()
+    return {
+      data: [],
+      hasMore: false,
+      totalRecords: 0,
+      error: 'Customer ID not found'
+    }
+  } catch {
+    return {
+      data: [],
+      hasMore: false,
+      totalRecords: 0,
+      error: 'Something went wrong'
+    }
   }
-  return getErrorMessage()
 }
