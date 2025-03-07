@@ -18,3 +18,5 @@ export interface SubscriptionDetailResponse {
   data?: Subscription
   error?: string
 }
+
+export { Transaction }
