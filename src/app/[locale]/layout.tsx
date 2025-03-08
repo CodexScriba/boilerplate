@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "../globals.css";
 import { PostHogProvider } from "../providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Import Poppins with all available weights for easy use
+// This loads all weight variants from thin (100) to black (900)
+// for maximum flexibility in your design system
+const poppins = Poppins({
+  // Include all weight variants from thin (100) to black (900)
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  // Define as a CSS variable for easy access throughout the application
+  variable: '--font-poppins',
+  // Include Latin character subset
+  subsets: ['latin'],
+  // Optional: You can also include font display strategy
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -26,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} font-poppins antialiased`}
       >
         <PostHogProvider>
           {children}
@@ -35,3 +39,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// TODO: Create a typography utility class or component that leverages the different Poppins weights

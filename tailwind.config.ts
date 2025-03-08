@@ -8,6 +8,10 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      poppins: ['var(--font-poppins)'],
+      sans: ['var(--font-poppins)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',
@@ -87,7 +91,18 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  		},
+      fontWeight: {
+        thin: '100',
+        extralight: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],
