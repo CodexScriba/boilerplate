@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
-import { LangSwitcher } from "./LangSwitcher";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Link from "next/link";
 import { navLinks } from "../config/navLinks";
 import { NavLink } from "./NavLink";
@@ -50,7 +50,7 @@ export function MobileMenu() {
 
           {/* Language Switcher */}
           <div className="py-4 border-t border-b">
-            <LangSwitcher />
+            <LanguageSwitcher />
           </div>
 
           {/* Auth Buttons */}

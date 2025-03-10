@@ -1,6 +1,6 @@
 import { navLinks } from "../config/navLinks";
 import { AuthButtons } from "./AuthButtons";
-import { LangSwitcher } from "./LangSwitcher";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { NavLink } from "./NavLink";
 import { NavLogo } from "./NavLogo";
 
@@ -28,7 +28,7 @@ export function TabletNav() {
 
             {/* Right side items */}
             <div className="flex items-center space-x-3">
-              <LangSwitcher className="w-[120px]" />
+              <LanguageSwitcher className="w-[120px]" />
               <AuthButtons compact={true} />
             </div>
           </div>

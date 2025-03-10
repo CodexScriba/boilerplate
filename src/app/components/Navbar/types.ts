@@ -15,9 +15,7 @@ export interface AuthButtonsProps {
   compact?: boolean;
 }
 
-export interface LangSwitcherProps {
-  className?: string;
-}
+// LangSwitcherProps removed as it's now defined in the main LanguageSwitcher component
 
 export interface NavLinkProps {
   item: NavLinkItem;

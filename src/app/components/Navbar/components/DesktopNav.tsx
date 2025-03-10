@@ -1,6 +1,6 @@
 import { navLinks } from "../config/navLinks";
 import { AuthButtons } from "./AuthButtons";
-import { LangSwitcher } from "./LangSwitcher";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { NavLink } from "./NavLink";
 import { NavLogo } from "./NavLogo";
 
@@ -26,7 +26,7 @@ export function DesktopNav() {
             {/* Right side items */}
             <div className="flex items-center space-x-6">
               <div className="rounded-full">
-                <LangSwitcher />
+                <LanguageSwitcher />
               </div>
               <AuthButtons />
             </div>
