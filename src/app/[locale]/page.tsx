@@ -1,11 +1,29 @@
 import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
+import { useTranslations } from 'next-intl';
 
+/**
+ * Home page component
+ * 
+ * This component renders the main landing page of the application
+ * with internationalized content using next-intl
+ * 
+ * TODO: Add more translated content sections
+ * TODO: Consider creating reusable UI components for cards and buttons
+ */
 export default function Home() {
+  // Get translations for the home page
+  const t = useTranslations('Pages.home');
+  const navT = useTranslations('Navigation');
+
   return (
-    <div className="grid grid-rows-[10px_1fr_20px] items-center justify-items-center min-h-screen p-8 pt-24 pb-20 gap-16 sm:p-20 md:pt-28 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[10px_1fr_20px] items-center justify-items-center min-h-screen p-8 pt-24 pb-20 gap-16 sm:p-20 md:pt-28 font-[family-name:var(--font-poppins)]">
       <Navbar />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        {/* Page title using translations */}
+        <h1 className="text-3xl font-bold mb-4">{t('title')}</h1>
+        <p className="text-lg mb-6">{t('description')}</p>
+        
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -14,7 +32,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-poppins)]">
           <li className="mb-2">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
@@ -95,7 +113,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          {navT('home')}
         </a>
       </footer>
     </div>

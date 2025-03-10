@@ -2,7 +2,16 @@
   "Navigation": {
     "home": "Inicio",
     "pricing": "Precios",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "services": "Servicios",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "Auth": {
+    "login": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "register": "Registro",
+    "forgotPassword": "Olvidé mi Contraseña"
   },
   "Pages": {
     "pricing": {

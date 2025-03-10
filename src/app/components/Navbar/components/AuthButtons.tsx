@@ -3,8 +3,20 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AuthButtonsProps } from "../types";
+import { useTranslations } from 'next-intl';
 
+/**
+ * AuthButtons component
+ * 
+ * Renders login and sign up buttons with internationalized labels
+ * Supports compact mode for mobile view
+ * 
+ * TODO: Add conditional rendering based on authentication state
+ */
 export function AuthButtons({ compact = false }: AuthButtonsProps) {
+  // Get translations for auth buttons
+  const t = useTranslations('Auth');
+  
   if (compact) {
     return (
       <div className="flex space-x-2">
@@ -14,7 +26,7 @@ export function AuthButtons({ compact = false }: AuthButtonsProps) {
           asChild
         >
           <Link href="/auth/login">
-            Login
+            {t('login')}
           </Link>
         </Button>
         <Button
@@ -23,7 +35,7 @@ export function AuthButtons({ compact = false }: AuthButtonsProps) {
           asChild
         >
           <Link href="/auth/register">
-            Sign Up
+            {t('signUp')}
           </Link>
         </Button>
       </div>
@@ -38,7 +50,7 @@ export function AuthButtons({ compact = false }: AuthButtonsProps) {
         asChild
       >
         <Link href="/auth/login">
-          Login
+          {t('login')}
         </Link>
       </Button>
 
@@ -48,7 +60,7 @@ export function AuthButtons({ compact = false }: AuthButtonsProps) {
         asChild
       >
         <Link href="/auth/register">
-          Sign Up
+          {t('signUp')}
         </Link>
       </Button>
     </>

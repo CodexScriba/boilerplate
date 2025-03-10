@@ -1,30 +1,39 @@
 import { NavLinkItem } from '../types';
 import { Home, Info, Headphones, BookOpen, Mail } from 'lucide-react';
 
+/**
+ * Navigation links configuration
+ * 
+ * Each link has a path, icon, and translation key for the label
+ * The translation key is used to fetch the localized label from the messages files
+ * 
+ * TODO: Add more navigation sections as needed
+ * TODO: Consider adding nested navigation items for dropdown menus
+ */
 export const navLinks: NavLinkItem[] = [
   {
     href: '/',
     icon: Home,
-    label: 'Home'
+    translationKey: 'Navigation.home'
   },
   {
     href: '/about',
     icon: Info,
-    label: 'About'
+    translationKey: 'Navigation.about'
   },
   {
     href: '/services',
     icon: Headphones,
-    label: 'Services'
+    translationKey: 'Navigation.services'
   },
   {
     href: '/blog',
     icon: BookOpen,
-    label: 'Blog'
+    translationKey: 'Navigation.blog'
   },
   {
     href: '/contact',
     icon: Mail,
-    label: 'Contact'
+    translationKey: 'Navigation.contact'
   }
 ];
