@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
+import '../styles/navbar.css';
 import { PostHogProvider } from "../providers";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import Navbar from "@/app/components/Navbar";
 
 /**
  * Poppins font configuration
@@ -63,7 +65,11 @@ export default async function RootLayout({children, params}: Props) {
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <PostHogProvider>
-            {children}
+            {/* Added Navbar component to the layout */}
+            <Navbar />
+            <main>
+              {children}
+            </main>
           </PostHogProvider>
         </NextIntlClientProvider>
       </body>

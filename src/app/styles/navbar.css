@@ -1,0 +1,97 @@
+/**
+ * Navbar Scroll Behavior Styles
+ * 
+ * This CSS file contains styles for the navbar's scroll behavior transitions.
+ * It defines how the navbar appears when at the top of the page vs. when scrolled.
+ * 
+ * The classes are applied by the NavbarScrollBehavior component based on scroll position.
+ */
+
+/* Common styles for all navbar states with improved transitions */
+.navbar-top .navbar-top-container,
+.navbar-scrolled .navbar-top-container {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, border-radius, padding, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Navbar at the top of the page */
+.navbar-top .navbar-top-container {
+  border-radius: 9999px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Navbar when scrolled down */
+.navbar-scrolled .navbar-top-container {
+  border-radius: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  background-color: rgba(255, 255, 255, 0.98);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Container for the navbar content to maintain max-width */
+.navbar-scrolled .navbar-top-container .navbar-content-container {
+  max-width: 80rem; /* max-w-6xl equivalent */
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar-scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 0 !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.navbar-scrolled nav {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Optional: Add styles for navbar elements when scrolled */
+.navbar-scrolled .navbar-top-container a,
+.navbar-scrolled .navbar-top-container button {
+  font-size: 0.875rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Add animations for logo size change */
+.navbar-scrolled .logo {
+  transform: scale(0.85);
+}
+
+.logo {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* TODO: Add dark mode support for the navbar scroll behavior */
+/* TODO: Consider adding scroll direction detection styles (hide on scroll down, show on scroll up) */

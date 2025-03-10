@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <title>i18n Icon</title>
+    <g fill="none" stroke-width="16">
+        <circle cx="128" cy="128" r="112" stroke="#4F46E5" fill="white"/>
+        <path d="M128,16 C128,16 198,62 198,128 C198,194 128,240 128,240" stroke="#4F46E5" stroke-linecap="round"/>
+        <path d="M128,16 C128,16 58,62 58,128 C58,194 128,240 128,240" stroke="#4F46E5" stroke-linecap="round"/>
+        <path d="M32,96 L224,96" stroke="#4F46E5" stroke-linecap="round"/>
+        <path d="M32,160 L224,160" stroke="#4F46E5" stroke-linecap="round"/>
+    </g>
+</svg>
