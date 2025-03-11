@@ -64,9 +64,107 @@ The authentication system is built with Supabase Auth and organized as follows:
 - **`/src/utils/paddle/get-customer-id.ts`** - Retrieves customer ID using Supabase authentication
 - **`/src/app/[locale]/(protected)/dashboard/page.tsx`** - Protected dashboard page that uses Supabase for authentication
 
+### Internationalization Module
+
+The internationalization system is built with next-intl and organized as follows:
+
+#### Core Files
+- **`/src/i18n/routing.ts`** - Defines supported locales, locale prefix strategy, and exports navigation utilities
+- **`/src/i18n/request.ts`** - Handles server-side locale detection and loads translation messages
+- **`/src/middleware.ts`** - Integrates next-intl middleware with Supabase authentication
+- **`/messages/en.json`** - English translation messages
+- **`/messages/es.json`** - Spanish translation messages
+
+#### Layout & Component Files
+- **`/src/app/[locale]/layout.tsx`** - Sets up NextIntlClientProvider and configures HTML lang attribute
+- **`/src/components/LanguageSwitcher.tsx`** - Client component for switching between languages
+
+#### How Files Interact
+
+1. **Request Flow**:
+   - The middleware intercepts requests to determine the locale
+   - `request.ts` loads appropriate translation messages
+   - `[locale]/layout.tsx` sets up the page with the correct locale and messages
+
+2. **Language Switching**:
+   - LanguageSwitcher uses `useRouter` from `routing.ts`
+   - When a user selects a new language, it preserves the current path but changes the locale segment
+   - The middleware handles the redirect to the new localized URL
+
+3. **Translation Usage**:
+   - Server components use `useTranslations` hook to access translations
+   - Client components receive translations via `NextIntlClientProvider`
+   - Navigation links use the `Link` component from `routing.ts` to maintain localization
+
+#### How To Use Translations
+
+##### In Server Components
+```tsx
+// Import the hook
+import { useTranslations } from 'next-intl';
+
+export default function MyServerComponent() {
+  // Get translations for a specific namespace
+  const t = useTranslations('Navigation');
+  
+  return (
+    <div>
+      <h1>{t('home')}</h1>
+      <p>{t('about')}</p>
+    </div>
+  );
+}
+```
+
+##### In Client Components
+```tsx
+'use client';
+
+// Import the hook
+import { useTranslations } from 'next-intl';
+
+export default function MyClientComponent() {
+  // Get translations for a specific namespace
+  const t = useTranslations('Auth');
+  
+  return (
+    <button>
+      {t('login')}
+    </button>
+  );
+}
+```
+
+##### For Navigation
+```tsx
+// Import Link from your navigation utilities
+import { Link } from '@/i18n/routing';
+
+export default function Navigation() {
+  // The Link component automatically handles locale prefixes
+  return (
+    <nav>
+      <Link href="/about">About</Link>
+      <Link href="/pricing">Pricing</Link>
+    </nav>
+  );
+}
+```
+
+##### Adding New Translations
+1. Add your translation key to the appropriate namespace in `messages/en.json`
+2. Add the same key to other language files (`messages/es.json`)
+3. Use the translation in your component with the `useTranslations` hook
+
+#### TODO: Future Improvements
+- Add more language options beyond English and Spanish
+- Implement right-to-left (RTL) language support
+- Add language detection based on user browser preferences
+- Create a centralized type definition for translation keys
+- Add visual indicators (flags) to the language switcher
+
 ### Navigation Components
 
-```
 app/components/
 ├── Navbar/
 │   ├── index.tsx                  # Main Navbar component with responsive rendering logic
@@ -83,7 +181,6 @@ app/components/
 │   │       └── MobileMenu.tsx     # Mobile navigation menu overlay
 └── config/
     └── navLinks.ts               # Configuration file for navigation items
-```
 
 ## Navbar Component Implementation
 
@@ -309,9 +406,3 @@ function PricingComponent() {
 - **Environment Switching**: The implementation supports both sandbox and production environments through the `NEXT_PUBLIC_PADDLE_ENV` environment variable.
 
 - **API Key Security**: The Paddle API key is only used server-side to prevent exposure in client-side code.
-
-### TODO: Future Improvements
-- Add webhook handling for subscription status changes
-- Implement subscription cancellation and update flows
-- Add caching for pricing data to reduce API calls
-- Create reusable components for displaying subscription information
