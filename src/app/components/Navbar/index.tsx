@@ -5,10 +5,11 @@
  * 
  * TODO: Implement responsive design with different layouts for desktop, tablet, and mobile
  * TODO: Add scroll-aware behavior that changes appearance when scrolling
- * TODO: Implement theme toggle functionality
  * TODO: Add language switcher
  * TODO: Add authentication buttons
  */
+import ThemeToggle from "../ThemeToggle";
+
 export function Navbar() {
   return (
     <header role="banner" className="navbar-container">
@@ -20,6 +21,10 @@ export function Navbar() {
         <nav className="navbar-links">
           {/* Navigation links will go here */}
         </nav>
+        <div className="navbar-actions">
+          {/* Theme toggle button */}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
