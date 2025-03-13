@@ -4,26 +4,23 @@ import "../globals.css";
 import '../styles/navbar.css';
 import { PostHogProvider } from "../providers";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
-import Navbar from "@/app/components/Navbar";
+import { routing } from '../../i18n/routing';
+import Navbar from "../components/Navbar";
+import { ThemeProvider } from "../../components/theme/ThemeProvider";
+import classNames from 'classnames';
 
 /**
  * Poppins font configuration
  * 
- * This loads all weight variants from thin (100) to black (900)
- * for maximum flexibility in your design system
- * 
+ * Loading all weight variants (100-900) for comprehensive typography options
+ * Using CSS variable --font-poppins for easy access throughout the application
  */
-const poppins = Poppins({
-  // Include all weight variants from thin (100) to black (900)
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  // Define as a CSS variable for easy access throughout the application
-  variable: '--font-poppins',
-  // Include Latin character subset
+const fontPoppins = Poppins({
   subsets: ['latin'],
-  // Optional: You can also include font display strategy
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
   display: 'swap',
 });
 
@@ -53,24 +50,29 @@ export default async function RootLayout({children, params}: Props) {
   }
 
   // Enable static rendering
-  setRequestLocale(locale);
+  unstable_setRequestLocale(locale);
 
   // Get messages for the current locale
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${poppins.variable} font-poppins antialiased`}
+        className={classNames(
+          'min-h-screen bg-background font-sans antialiased theme-transition',
+          fontPoppins.variable
+        )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <PostHogProvider>
-            {/* Added Navbar component to the layout */}
-            <Navbar />
-            <main>
-              {children}
-            </main>
-          </PostHogProvider>
+          <ThemeProvider defaultTheme="system" storageKey="theme">
+            <PostHogProvider>
+              {/* Added Navbar component to the layout */}
+              <Navbar />
+              <main>
+                {children}
+              </main>
+            </PostHogProvider>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -13,6 +13,11 @@
     "register": "Register",
     "forgotPassword": "Forgot Password"
   },
+  "Theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
   "Pages": {
     "pricing": {
       "title": "Pricing",

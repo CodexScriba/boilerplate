@@ -10,8 +10,13 @@
   "Auth": {
     "login": "Iniciar Sesión",
     "signUp": "Registrarse",
-    "register": "Registro",
+    "register": "Registrarse",
     "forgotPassword": "Olvidé mi Contraseña"
+  },
+  "Theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
   },
   "Pages": {
     "pricing": {
@@ -20,7 +25,7 @@
     },
     "about": {
       "title": "Acerca de",
-      "description": "Aprende más sobre nosotros"
+      "description": "Conoce más sobre nosotros"
     },
     "home": {
       "title": "Bienvenido",
