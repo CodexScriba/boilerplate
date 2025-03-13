@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { RegisterFormValues, registerSchema } from "../registration/types";
-import { register } from "../registration/actions";
+import { RegisterFormValues, registerSchema } from "../register/types";
+import { register } from "../register/actions";
 
 interface RegisterFormProps {
   onSuccess?: () => void;

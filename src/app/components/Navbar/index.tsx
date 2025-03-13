@@ -6,9 +6,9 @@
  * TODO: Implement responsive design with different layouts for desktop, tablet, and mobile
  * TODO: Add scroll-aware behavior that changes appearance when scrolling
  * TODO: Add language switcher
- * TODO: Add authentication buttons
  */
 import ThemeToggle from "../ThemeToggle";
+import AuthButtons from "./AuthButtons";
 
 export function Navbar() {
   return (
@@ -22,6 +22,9 @@ export function Navbar() {
           {/* Navigation links will go here */}
         </nav>
         <div className="navbar-actions">
+          {/* Auth buttons */}
+          <AuthButtons />
+          
           {/* Theme toggle button */}
           <ThemeToggle />
         </div>

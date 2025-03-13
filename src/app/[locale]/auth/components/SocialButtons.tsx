@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Facebook, Apple } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { socialLogin } from "../registration/actions"; // Import the server action
+import { socialLogin } from "../register/actions"; // Import the server action
 // Removed unused SocialLoginResult import
 
 export type SocialProvider = "google" | "facebook" | "apple";
