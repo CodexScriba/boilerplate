@@ -24,8 +24,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import navLinks from "./NavLinks";
 import Logo from "./Logo";
-import AuthButtons from "./AuthButtons";
-import ThemeToggle from "../ThemeToggle";
+import AuthButtons from "../AuthButtons";
+import ThemeToggle from "../../ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 /**

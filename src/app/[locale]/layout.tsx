@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '../../i18n/routing';
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import { ThemeProvider } from "../../components/theme/ThemeProvider";
 import classNames from 'classnames';
 

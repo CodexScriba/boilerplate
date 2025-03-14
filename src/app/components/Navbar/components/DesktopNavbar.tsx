@@ -18,11 +18,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import navLinks from "./NavLinks";
 import Logo from "./Logo";
-import AuthButtons from "./AuthButtons";
-import ThemeToggle from "../ThemeToggle";
+import AuthButtons from "../AuthButtons";
+import ThemeToggle from "../../ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import navLinks from "./NavLinks";
 
 /**
  * DesktopNavbar Component
