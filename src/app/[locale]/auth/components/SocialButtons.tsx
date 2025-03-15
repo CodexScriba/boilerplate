@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Facebook, Apple } from "lucide-react";
+import { Facebook } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { socialLogin } from "../register/actions"; // Import the server action
 // Removed unused SocialLoginResult import
 
-export type SocialProvider = "google" | "facebook" | "apple";
+export type SocialProvider = "google" | "facebook";
 
 interface SocialButtonsProps {
   className?: string;
@@ -53,16 +53,11 @@ const PROVIDER_CONFIG = {
     className: "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50",
     label: "Google",
   },
-  apple: {
-    icon: <Apple size={20} aria-hidden="true" />,
-    className: "bg-black text-white hover:bg-black/90",
-    label: "Apple",
-  },
 } as const;
 
 export function SocialButtons({
   className,
-  showProviders = ["facebook", "google", "apple"],
+  showProviders = ["facebook", "google"],
 }: SocialButtonsProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -105,7 +100,7 @@ export function SocialButtons({
           {error}
         </div>
       )}
-      <div className={cn("grid grid-cols-1 sm:grid-cols-3 gap-3", className)} role="group" aria-label="Social login options">
+      <div className={cn("grid grid-cols-1 sm:grid-cols-2 gap-3", className)} role="group" aria-label="Social login options">
         {showProviders.map((provider) => {
           const config = PROVIDER_CONFIG[provider];
           const isCurrentlyLoading = isLoading && activeProvider === provider;
@@ -124,7 +119,7 @@ export function SocialButtons({
               type="button"
             >
               <span className="flex-shrink-0">{config.icon}</span>
-              <span className="truncate max-w-[100px]">{isCurrentlyLoading ? `Connecting...` : provider === "apple" ? "Apple" : config.label}</span>
+              <span className="truncate max-w-[100px]">{isCurrentlyLoading ? `Connecting...` : config.label}</span>
             </Button>
           );
         })}
