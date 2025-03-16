@@ -68,11 +68,7 @@ export default async function RootLayout({children, params}: Props) {
             <PostHogProvider>
               {/* Added Navbar component to the layout */}
               <Navbar />
-              {/* 
-                Using padding-top on the main element to ensure content is not hidden behind the navbar
-                This approach doesn't add any extra elements to the DOM
-              */}
-              <main className="pt-16 md:pt-16 lg:pt-20">
+              <main>
                 {children}
               </main>
             </PostHogProvider>
