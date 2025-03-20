@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
 
 /**
  * Home page component
@@ -12,10 +11,6 @@ import { useTranslations } from 'next-intl';
  * TODO: Implement dark mode toggle component for better user experience
  */
 export default function Home() {
-  // Get translations for the home page
-  const t = useTranslations('Pages.home');
-  const navT = useTranslations('Navigation');
-
   // Technology stack data
   const technologies = [
     {

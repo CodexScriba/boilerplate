@@ -15,11 +15,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import navLinks from "./NavLinks";
 import Logo from "./Logo";
 import AuthButtons from "../AuthButtons";
-import ThemeToggle from "../../ThemeToggle";
+import ThemeToggle from "../ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 /**

@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: Promise<{locale: 'en' | 'es'}>;
 };
 
 export default async function RootLayout({children, params}: Props) {
@@ -45,7 +45,7 @@ export default async function RootLayout({children, params}: Props) {
   const {locale} = await params;
   
   // Validate that the incoming locale is supported
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as 'en' | 'es')) {
     notFound();
   }
 

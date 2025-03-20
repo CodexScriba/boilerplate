@@ -18,15 +18,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import navLinks from "./NavLinks";
 import Logo from "./Logo";
 import AuthButtons from "../AuthButtons";
-import ThemeToggle from "../../ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ThemeToggle from "../ThemeToggle";
 
 /**
  * MobileNavbar Component
